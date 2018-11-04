@@ -1,7 +1,6 @@
 package tic.tac.toe;
 
 import tic.tac.toe.interfaces.Player;
-import tic.tac.toe.model.TicTacToeGame;
 
 public class TicTacToeGameFactory {
 	public static TicTacToeGame createTicTacToe(int rows, int columns, Player[] players){

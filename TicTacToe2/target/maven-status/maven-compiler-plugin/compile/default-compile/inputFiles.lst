@@ -1,8 +1,8 @@
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/interfaces/Player.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/Main.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/model/Position.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/model/TicTacToeGame.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/PropertiesLoader.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/model/AutomaticPlayer.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/model/HumanPlayer.java
-/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/java/tic/tac/toe/TicTacToeGameFactory.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/model/AutomaticPlayer.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/PropertiesLoader.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/model/Position.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/Main.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/TicTacToeGameFactory.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/interfaces/Player.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/model/HumanPlayer.java
+/home/eno/git/TicTacToe2/TicTacToe2/src/main/java/tic/tac/toe/TicTacToeGame.java

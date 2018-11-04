@@ -1,16 +1,23 @@
 package tic.tac.toe;
 
-import tic.tac.toe.model.TicTacToeGame;
+import java.util.Optional;
+
+import tic.tac.toe.interfaces.Player;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		PropertiesLoader propertiesLoader = new PropertiesLoader("/home/eno/development/workspaces/STS40/WTGWorkspace/TicTacToe2/src/main/resources/configuration.properties");
-		TicTacToeGameFactory gameFactory = new TicTacToeGameFactory();
-		
-		TicTacToeGame game = gameFactory.createTicTacToe(propertiesLoader.getRows(), 
+		PropertiesLoader propertiesLoader = new PropertiesLoader("/home/eno/git/TicTacToe2/TicTacToe2/src/main/resources/configuration.properties");
+		TicTacToeGame game = TicTacToeGameFactory.createTicTacToe(propertiesLoader.getRows(), 
 				propertiesLoader.getColumns(), propertiesLoader.getPlayers());
-		game.playTheGame();
+		Optional<Player>winner =game.playTheGame();
+		if(winner.isPresent()) {
+			System.out.println("+++ WINNER IS PLAYER  :"+winner.get().getPlayerCharacter()+"  +++");
+		}else {
+			System.out.println("+++ GAME ENDED WITHOUT WINNER+++");
+		}
+		
+		
 		
 
 	}

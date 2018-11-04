@@ -1,7 +1,7 @@
 package tic.tac.toe.interfaces;
 
+import tic.tac.toe.TicTacToeGame;
 import tic.tac.toe.model.Position;
-import tic.tac.toe.model.TicTacToeGame;
 
 public interface Player {
 	

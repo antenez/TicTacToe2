@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: tic.tac.toe.TicTacToeGameTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 2.12 s - in tic.tac.toe.TicTacToeGameTest

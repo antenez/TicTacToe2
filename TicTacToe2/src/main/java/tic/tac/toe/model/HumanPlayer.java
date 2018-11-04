@@ -5,6 +5,7 @@ package tic.tac.toe.model;
 
 import java.util.Scanner;
 
+import tic.tac.toe.TicTacToeGame;
 import tic.tac.toe.interfaces.Player;
 
 /**
@@ -25,7 +26,7 @@ public class HumanPlayer implements Player {
 	public Position play(TicTacToeGame game) {
 		System.out.println(String.format("Player:%s, Enter new move in format 'row,column':", this.getPlayerCharacter()+""));
 		Scanner sc = new Scanner(System.in);
-		String stringPosition = sc.nextLine();
+		String stringPosition = sc.next();
 		Position p = getPositionFromUserInput(stringPosition);
 		return p;
 	}
