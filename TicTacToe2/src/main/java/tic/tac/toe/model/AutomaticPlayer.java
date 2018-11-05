@@ -111,7 +111,8 @@ public class AutomaticPlayer implements Player {
 				for(Position p : getPositionsInFieldAround(new Position(r, c), game.getGameField())) {
 					if(!tmpVisitedPositions.contains(p.toString())){
 						tmpVisitedPositions.add(p.toString());
-						if(checkWinningConditionsForChar(currentChar, p, game.getGameField())) {
+						if(game.getGameField()[p.getRow()][p.getColumn()]==TicTacToeGame.DEFAULT_VALUE
+								&& checkWinningConditionsForChar(currentChar, p, game.getGameField())) {
 							response = Optional.of(p);
 							break;
 						}					
