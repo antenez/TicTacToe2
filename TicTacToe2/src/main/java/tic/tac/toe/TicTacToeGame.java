@@ -114,7 +114,7 @@ public class TicTacToeGame {
 		//lDiagonal
 		try {
 			if(gameField[rowNum][columnNum] == gameField[rowNum-1][columnNum-1] 
-					&& gameField[rowNum][columnNum] == gameField[rowNum+1][columnNum]+1) return true;
+					&& gameField[rowNum][columnNum] == gameField[rowNum+1][columnNum+1]) return true;
 		}catch(IndexOutOfBoundsException e) {}
 		//rDiagonal
 		try {
