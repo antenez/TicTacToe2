@@ -8,7 +8,6 @@ import static org.mockito.Mockito.spy;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -41,13 +40,12 @@ public class TicTacToeGameTest {
 		PowerMockito.when(p1.getPlayerCharacter()).thenReturn('X');
 		PowerMockito.when(p2.getPlayerCharacter()).thenReturn('O');
 	}
-	
+
 //	@After
 //	public void clean() {
 //		p1 = null;
 //		p2 = null;
 //	}
-	
 
 	@Test
 	public void testTicTacToeGameParametersValidation() {
@@ -94,7 +92,8 @@ public class TicTacToeGameTest {
 
 	}
 
-	@Ignore("This test is ignored because mock and power mock issues on spyed game.playgame method")
+	// @Ignore("This test is ignored because mock and power mock issues on spyed
+	// game.playgame method")
 	@Test
 	public void testTicTacToeGame() {
 		// Sample
@@ -102,30 +101,33 @@ public class TicTacToeGameTest {
 		// OXO
 		// OXX
 
-		PowerMockito.when(p1.play(any())).thenReturn(new Position(2, 2), new Position(1, 1), new Position(1, 3),
-				new Position(3, 2), new Position(3, 3));
-
-		PowerMockito.when(p2.play(any())).thenReturn(new Position(2, 1), new Position(3, 1), new Position(2, 3),
-				new Position(1, 2));
-
 		Player[] players = new Player[2];
 		players[0] = p1;
 		players[1] = p2;
 
 		game = spy(new TicTacToeGame(3, 3, players));
-		
-//		try {
-//			/**THIS SUPPOSE TO DO WORK BUT DID NOT**/
-//			PowerMockito.doReturn(0).when(game, "getRandomInitialPlayerIndex");
-//			//doReturn(p1).when(game);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail("getCurrentPlayer stub preparation fail!");
-//		}
 
-		Optional<Player> winner =  game.playTheGame();
+		char expectedWinner;
+		if (game.getCurrentPlayer().getPlayerCharacter() == 'X') {
+			expectedWinner = 'X';
+			PowerMockito.when(p1.play(any())).thenReturn(new Position(2, 2), new Position(1, 1), new Position(1, 3),
+					new Position(3, 2), new Position(3, 3));
+
+			PowerMockito.when(p2.play(any())).thenReturn(new Position(2, 1), new Position(3, 1), new Position(2, 3),
+					new Position(1, 2));
+		} else {
+			// because dynamic first player selection we switch player moves.
+			expectedWinner = 'O';
+			PowerMockito.when(p2.play(any())).thenReturn(new Position(2, 2), new Position(1, 1), new Position(1, 3),
+					new Position(3, 2), new Position(3, 3));
+
+			PowerMockito.when(p1.play(any())).thenReturn(new Position(2, 1), new Position(3, 1), new Position(2, 3),
+					new Position(1, 2));
+		}
+
+		Optional<Player> winner = game.playTheGame();
 		assertEquals(true, winner.isPresent());
-		assertEquals("Winner is not as expected!",'X',winner.get().getPlayerCharacter());
+		assertEquals("Winner is not as expected!", expectedWinner, winner.get().getPlayerCharacter());
 	}
 
 	@Test
