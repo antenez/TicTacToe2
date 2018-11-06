@@ -5,6 +5,8 @@ import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.spy;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,6 +41,13 @@ public class TicTacToeGameTest {
 		PowerMockito.when(p1.getPlayerCharacter()).thenReturn('X');
 		PowerMockito.when(p2.getPlayerCharacter()).thenReturn('O');
 	}
+	
+//	@After
+//	public void clean() {
+//		p1 = null;
+//		p2 = null;
+//	}
+	
 
 	@Test
 	public void testTicTacToeGameParametersValidation() {
@@ -103,38 +112,20 @@ public class TicTacToeGameTest {
 		players[0] = p1;
 		players[1] = p2;
 
-		game = null;
-		game = PowerMockito.spy(new TicTacToeGame(3, 3, players));
-		try {
-			PowerMockito.doReturn(1).when(game, "getRandomInitialPlayerIndex");
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("getCurrentPlayer stub preparation fail!");
-		}
+		game = spy(new TicTacToeGame(3, 3, players));
+		
+//		try {
+//			/**THIS SUPPOSE TO DO WORK BUT DID NOT**/
+//			PowerMockito.doReturn(0).when(game, "getRandomInitialPlayerIndex");
+//			//doReturn(p1).when(game);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			fail("getCurrentPlayer stub preparation fail!");
+//		}
 
-		game.playTheGame();
-	}
-
-	@Test
-	public void testGetPlayedPositionCounter() {
-		// fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testIsGameCompleted() {
-		TicTacToeGame game = spy(this.game);
-		// when(game.get(0)).thenReturn("foo");
-	}
-
-	@Test
-	public void testPrintBoard() {
-		// fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPlayTheGame() {
-		// fail("Not yet implemented");
+		Optional<Player> winner =  game.playTheGame();
+		assertEquals(true, winner.isPresent());
+		assertEquals("Winner is not as expected!",'X',winner.get().getPlayerCharacter());
 	}
 
 	@Test
