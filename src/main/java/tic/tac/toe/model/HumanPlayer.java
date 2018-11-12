@@ -24,10 +24,20 @@ public class HumanPlayer implements Player {
 	 * @see tic.tac.toe.interfaces.Player#play()
 	 */
 	public Position play(TicTacToeGame game) {
-		System.out.println(String.format("Player:%s, Enter new move in format 'row,column':", this.getPlayerCharacter()+""));
-		Scanner sc = new Scanner(System.in);
-		String stringPosition = sc.next();
-		Position p = getPositionFromUserInput(stringPosition);
+		Position p = null;
+		while(p == null) {
+			try {
+				System.out.println(String.format("Player:%s, Enter new move in format 'row,column':", this.getPlayerCharacter()+""));
+				Scanner sc = new Scanner(System.in);
+				String stringPosition = sc.next();
+				p = getPositionFromUserInput(stringPosition);
+			}catch (IndexOutOfBoundsException e) {
+				System.out.println("+++ Input is not vell formatted. Should be in 'row, column' format.");
+			}
+			catch (Exception e) {
+				System.out.println("+++ Unexpected exception occured. "+e.getMessage());
+			}
+		}
 		return p;
 	}
 
