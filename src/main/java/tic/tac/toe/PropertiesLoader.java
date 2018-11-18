@@ -15,16 +15,19 @@ public class PropertiesLoader {
 	public static String COLUMN_NUM_KEY = "tic.tac.toe.columns";
 	public static String ROWS_NUM_KEY = "tic.tac.toe.rows";
 	public static String PC_PLAYER_LETTER_KEY = "tic.tac.toe.pcplayletter";
+	public static String PC_IS_CORNER_GAME_KEY = "tic.tac.toe.iscornergame";
 
 	private int rows;
 	private int columns;
 	private Player[] players;
+	private boolean isCornerGame;
 
 	public PropertiesLoader(String configurationPath) {
 		Properties properties = loadFromFile(configurationPath);
 		rows = Integer.valueOf(properties.get(ROWS_NUM_KEY) + "");
 		columns = Integer.valueOf(properties.get(COLUMN_NUM_KEY) + "");
 		String pcPlayerLetter = (String) properties.get(PC_PLAYER_LETTER_KEY);
+		isCornerGame = Boolean.valueOf( properties.getProperty(PC_IS_CORNER_GAME_KEY, "false"));
 
 		String[] playersString = ((String) properties.get(PLAYERS_KEY)).split(",");
 		if (pcPlayerLetter != null) {
@@ -42,6 +45,10 @@ public class PropertiesLoader {
 			System.out.println("Created automatic player with char: " + pcPlayerLetter.charAt(0));
 			players[players.length - 1] = new AutomaticPlayer(pcPlayerLetter.charAt(0));
 		}
+	}
+
+	public boolean isCornerGame() {
+		return isCornerGame;
 	}
 
 	public Properties loadFromFile(String configurationPath) {

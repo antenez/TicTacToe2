@@ -58,9 +58,11 @@ Simplified steps to integrate are:
 
 **Note that in case of integration to some gui app Human Player interaction should be changed and improved. Currently we are using scanner input**
 
-## some ideas
+## some ideas and TODOS
 To expose interface to play moves from outside game because currently game is controlling moves.
 - Game should have identifier in this case to access  to game.
 - Players should have indentifier to verify that it is particular user.
+- Use strategies for determination of winning conditions, it will also help us in implementation of different kind of games. Additionally for this could be used Factory of factories pattern.
+
 <Enter>
 

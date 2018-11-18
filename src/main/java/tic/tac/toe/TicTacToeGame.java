@@ -15,6 +15,7 @@ public class TicTacToeGame {
 	private Player[] players;
 	private List<Position> history = null;
 	private int currentPlayerInd = -1;
+	private boolean isCornerGame = false;
 
 	public TicTacToeGame(int numberOfRows, int numberOfColumns, Player[] players) throws IllegalArgumentException {
 		super();
@@ -37,6 +38,12 @@ public class TicTacToeGame {
 		}
 
 		System.out.println("Game is configured.");
+	}
+	
+	public TicTacToeGame(int numberOfRows, int numberOfColumns, Player[] players, boolean isCornerGame) throws IllegalArgumentException {
+		this(numberOfRows,numberOfColumns,players);
+		this.isCornerGame = isCornerGame;
+		System.out.println("Game is configured also as CornerGame.");
 	}
 
 	/**
@@ -75,7 +82,25 @@ public class TicTacToeGame {
 			if (checkEqualsAroundPosition(p.getRow(), p.getColumn())) {
 				return true;
 			}
+			if(isCornerGame) {
+				if(checkCornerGameRules()) {
+					return true;
+				}
+			}
 		}
+		return false;
+	}
+
+	private boolean checkCornerGameRules() {
+		char compareWith = this.gameField[0][0] ;
+		
+		if(compareWith != TicTacToeGame.DEFAULT_VALUE 
+				&& compareWith == gameField[0][gameField[0].length-1] 
+				&& compareWith == gameField[gameField.length-1][0]
+				&& compareWith == gameField[gameField.length-1][gameField[0].length-1]) {
+			return true;
+		}
+	
 		return false;
 	}
 
@@ -149,6 +174,9 @@ public class TicTacToeGame {
 		for (int i = history.size() - 1; 0 <= i; i--) {
 			Position p = history.get(i);
 			boolean isWinner = checkEqualsAroundPosition(p.getRow(), p.getColumn());
+			if(isWinner == false ) {
+				isWinner = this.checkCornerGameRules();
+			}
 			if (isWinner) {
 				return Optional.of(getPlayerByChar(this.gameField[p.getRow()][p.getColumn()]));
 			}
